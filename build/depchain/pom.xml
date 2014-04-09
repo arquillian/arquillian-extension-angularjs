@@ -4,7 +4,7 @@
         <groupId>org.jboss.arquillian.graphene</groupId>
         <artifactId>graphene-angular-parent</artifactId>
         <version>1.0.0.Final-SNAPSHOT</version>
-        <relativePath>../..</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <artifactId>graphene-angular</artifactId>

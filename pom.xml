@@ -73,20 +73,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <dependency>
-                <groupId>org.jboss.arquillian.core</groupId>
-                <artifactId>arquillian-core-impl-base</artifactId>
-                <version>${version.arquillian.core}</version>
-                <classifier>tests</classifier>
-            </dependency>
-
-            <dependency>
-                <groupId>org.jboss.arquillian.test</groupId>
-                <artifactId>arquillian-test-impl-base</artifactId>
-                <version>${version.arquillian.core}</version>
-                <classifier>tests</classifier>
-            </dependency>
-
             <!-- Arquillian Graphene dependencies -->
             <dependency>
                 <groupId>org.jboss.arquillian.graphene</groupId>
@@ -94,6 +80,16 @@
                 <version>${version.arquillian.graphene}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>graphene-webdriver-spi</artifactId>
+                <version>${version.arquillian.graphene}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.graphene</groupId>
+                <artifactId>graphene-webdriver-impl</artifactId>
+                <version>${version.arquillian.graphene}</version>
             </dependency>
 
             <!-- Test dependencies -->
@@ -203,7 +199,7 @@
                             <exclude>.gitignore</exclude>
                         </excludes>
                         <properties>
-                            <year>2013</year>
+                            <year>2014</year>
                         </properties>
                     </configuration>
                     <executions>

@@ -6,12 +6,18 @@
         <groupId>org.jboss.arquillian.graphene</groupId>
         <artifactId>graphene-angular-parent</artifactId>
         <version>1.0.0.Final-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
 
     <artifactId>graphene-angular-api</artifactId>
     <name>Graphene Angular: API</name>
 
     <dependencies>
+        <dependency>
+            <groupId>org.jboss.arquillian.graphene</groupId>
+            <artifactId>graphene-webdriver-spi</artifactId>
+            <scope>provided</scope>
+        </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-api</artifactId>
