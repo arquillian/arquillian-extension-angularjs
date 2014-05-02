@@ -22,13 +22,7 @@ window.Graphene.angularModelSearchContext = (function() {
 
   return {
     findElements: function(model) {
-      for (var p = 0; p < prefixes.length; ++p) {
-        var selector = '[' + prefixes[p] + 'model="' + model + '"]';
-        var elements = document.querySelectorAll(selector);
-        if (elements.length) {
-          return window.Graphene.arrayConverter(elements);
-        }
-      }
+      return window.Graphene.angularModelSearchContext.findElementsInElement(model, document);
     },
     findElementsInElement: function(model, root) {
       for (var p = 0; p < prefixes.length; ++p) {
