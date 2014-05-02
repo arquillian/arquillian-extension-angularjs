@@ -52,6 +52,12 @@ Angular attributes can offer you stable way how to describe
         @FindByNg(model = "todoText")
         WebElement todoEntry;
 
+        @FindByNg(action = "archive()")
+        WebElement archive;
+
+        @FindByNg(action = "addTodo()")
+        WebElement addTodo;
+
         @Before
         public void loadPage() {
             browser.navigate().to(contextRoot + "index.html");
@@ -60,5 +66,18 @@ Angular attributes can offer you stable way how to describe
         @Test
         public void testNumberOfTodos() {
             assertEquals(2, todos.size());
+        }
+
+        @Test
+        public void testArchive() {
+            archive.click();
+            assertEquals(1, todos.size());
+        }
+
+        @Test
+        public void testAddTodo() {
+            todoEntry.sendKeys("This is a new TODO item");
+            addTodo.submit();
+            assertEquals(3, todos.size());
         }
     }
