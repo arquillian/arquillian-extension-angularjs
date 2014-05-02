@@ -14,12 +14,12 @@
     <properties>
         <testsuite.basedir>${project.parent.basedir}/..</testsuite.basedir>
 
-        <browser>htmlUnit</browser>
+        <browser>phantomjs</browser>
 
         <platform>ANY</platform>
         <browser.version>undefined</browser.version>
 
-        <tomcat.version>7.0.26</tomcat.version>
+        <tomcat.version>7.0.37</tomcat.version>
         <tomcat.home>target/apache-tomcat-${tomcat.version}</tomcat.home>
         <arquillian.tomcat.version>1.0.0.CR6</arquillian.tomcat.version>
     </properties>
@@ -42,10 +42,11 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- Arquillian JUnit -->
         <dependency>
-            <groupId>org.jboss.arquillian.junit</groupId>
-            <artifactId>arquillian-junit-container</artifactId>
+            <groupId>org.jboss.arquillian.graphene</groupId>
+            <artifactId>graphene-webdriver</artifactId>
+            <version>${version.arquillian.graphene}</version>
+            <type>pom</type>
             <scope>test</scope>
         </dependency>
 
@@ -57,26 +58,16 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-all</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-drone-selenium-server</artifactId>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
             <groupId>org.jboss.arquillian.container</groupId>
             <artifactId>arquillian-tomcat-managed-7</artifactId>
             <version>${arquillian.tomcat.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Arquillian JUnit -->
+        <dependency>
+            <groupId>org.jboss.arquillian.junit</groupId>
+            <artifactId>arquillian-junit-container</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -96,6 +87,12 @@
             <plugin>
                 <groupId>com.mycila.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>**/angular*.js</exclude>
+                        <exclude>**/tomcat-users.xml</exclude>
+                    </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -115,7 +112,7 @@
                                 <artifactItem>
                                     <groupId>com.googlecode.t7mp</groupId>
                                     <artifactId>tomcat</artifactId>
-                                    <version>${tomcat.version}.A</version>
+                                    <version>${tomcat.version}</version>
                                     <type>zip</type>
                                     <overWrite>false</overWrite>
                                     <outputDirectory>${project.build.directory}</outputDirectory>
@@ -158,13 +155,6 @@
         </profile>
 
         <profile>
-            <id>webdriver-phantomjs</id>
-            <properties>
-                <browser>phantomjs</browser>
-            </properties>
-        </profile>
-
-        <profile>
             <id>webdriver-firefox</id>
             <properties>
                 <browser>firefox</browser>
@@ -179,4 +169,3 @@
         </profile>
     </profiles>
 </project>
-
