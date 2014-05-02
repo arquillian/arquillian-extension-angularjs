@@ -1,1 +1,1 @@
-org.jboss.arquillian.graphene.extension.angularjs.AngularJSDroneExtension
+org.jboss.arquillian.graphene.angular.AngularJSDroneExtension
