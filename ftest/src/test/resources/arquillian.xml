@@ -40,7 +40,7 @@
             </property>
             <property name="user">tomcat</property>
             <property name="pass">tomcat</property>
-            <property name="catalinaHome">/home/ken/projects/jboss/arquillian/angular-graphene/ftest/target/apache-tomcat-7.0.37</property>
+            <property name="catalinaHome">${tomcat.home}</property>
             <!--<property name="catalinaHome">target/apache-tomcat-7.0.37</property>-->
         </configuration>
     </container>
