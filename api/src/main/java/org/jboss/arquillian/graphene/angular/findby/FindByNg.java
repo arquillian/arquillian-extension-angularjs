@@ -31,6 +31,7 @@ import org.jboss.arquillian.graphene.spi.findby.ImplementsLocationStrategy;
 @Target(ElementType.FIELD)
 @ImplementsLocationStrategy(AngularJSLocationStrategy.class)
 public @interface FindByNg {
+
     String model() default "";
 
     String action() default "";

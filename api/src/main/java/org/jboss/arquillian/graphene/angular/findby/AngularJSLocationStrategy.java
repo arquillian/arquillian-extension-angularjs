@@ -31,12 +31,12 @@ public class AngularJSLocationStrategy implements LocationStrategy {
     public By fromAnnotation(Annotation annotation) {
         FindByNg findBy = (FindByNg) annotation;
 
-        if (!findBy.model().equals("")) {
+        if (!findBy.model().isEmpty()) {
             return ByAngular.model(findBy.model());
-        } else if (!findBy.action().equals("")) {
+        } else if (!findBy.action().isEmpty()) {
             return ByAngular.action(findBy.action());
         }
 
-        return null;
+        throw new IllegalStateException(String.format("Unable to determine the AngularJS operation from annotation %s", findBy));
     }
 }
