@@ -17,26 +17,19 @@
  */
 package org.jboss.arquillian.graphene.angular.findby;
 
-import java.util.List;
-
 import org.jboss.arquillian.core.spi.Validate;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
 import org.jboss.arquillian.graphene.javascript.JSInterfaceFactory;
-import org.jboss.arquillian.graphene.proxy.GrapheneProxyInstance;
-import org.openqa.selenium.By;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
-import org.openqa.selenium.WebElement;
 
 /**
  * @author Ken Finnigan
  */
-public class ByActionImpl extends By {
+public class ByActionImpl extends ByAngularImpl {
 
     private final String actionName;
 
     public ByActionImpl(String actionName) {
+        super(actionName, "ng-click, ng-submit");
         Validate.notNull(actionName, "Cannot find element when action name is null!");
         this.actionName = actionName;
     }
@@ -47,34 +40,7 @@ public class ByActionImpl extends By {
     }
 
     @Override
-    public List<WebElement> findElements(SearchContext searchContext) {
-        GrapheneContext grapheneContext = getGrapheneContext(searchContext);
-
-        AngularActionSearchContext actionSearchContext = JSInterfaceFactory.create(grapheneContext, AngularActionSearchContext.class);
-        List<WebElement> elements;
-
-        try {
-            if (searchContext instanceof WebElement) {
-                elements = actionSearchContext.findElementsInElement(actionName, (WebElement) searchContext);
-            } else if (searchContext instanceof WebDriver) {
-                elements = actionSearchContext.findElements(actionName);
-            } else {
-                // Unknown case
-                throw new WebDriverException(
-                        "Unable to determine the SearchContext passed to findBy method! It is not an instance of WebDriver or WebElement. It is: "
-                                + searchContext);
-            }
-        } catch (Exception e) {
-            throw new WebDriverException("Unable to locate ng-click element for: " + actionName + ". Check whether it is correct", e);
-        }
-        return elements;
-    }
-
-    private GrapheneContext getGrapheneContext(SearchContext searchContext) {
-        if (searchContext instanceof GrapheneProxyInstance) {
-            return ((GrapheneProxyInstance) searchContext).getContext();
-        } else {
-            return GrapheneContext.lastContext();
-        }
+    protected AngularSearchContext getSearchContext(GrapheneContext grapheneContext) {
+        return JSInterfaceFactory.create(grapheneContext, AngularActionSearchContext.class);
     }
 }

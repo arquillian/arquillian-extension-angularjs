@@ -17,20 +17,13 @@
  */
 package org.jboss.arquillian.graphene.angular.findby;
 
-import java.util.List;
-
 import org.jboss.arquillian.graphene.javascript.Dependency;
 import org.jboss.arquillian.graphene.javascript.JavaScript;
-import org.openqa.selenium.WebElement;
 
 /**
  * @author Ken Finnigan
  */
 @JavaScript("Graphene.angularModelSearchContext")
 @Dependency(sources = "Graphene.angularModelSearchContext.js", interfaces = ArrayConverter.class)
-public interface AngularModelSearchContext {
-
-    List<WebElement> findElements(String model);
-
-    List<WebElement> findElementsInElement(String model, WebElement context);
+public interface AngularModelSearchContext extends AngularSearchContext {
 }
