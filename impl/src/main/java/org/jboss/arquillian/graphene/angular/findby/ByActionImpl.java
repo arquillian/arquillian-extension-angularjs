@@ -21,9 +21,12 @@ import java.util.List;
 
 import org.jboss.arquillian.core.spi.Validate;
 import org.jboss.arquillian.graphene.context.GrapheneContext;
+import org.jboss.arquillian.graphene.javascript.JSInterfaceFactory;
 import org.jboss.arquillian.graphene.proxy.GrapheneProxyInstance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.SearchContext;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 /**
@@ -45,7 +48,26 @@ public class ByActionImpl extends By {
 
     @Override
     public List<WebElement> findElements(SearchContext searchContext) {
-        return null;
+        GrapheneContext grapheneContext = getGrapheneContext(searchContext);
+
+        AngularActionSearchContext actionSearchContext = JSInterfaceFactory.create(grapheneContext, AngularActionSearchContext.class);
+        List<WebElement> elements;
+
+        try {
+            if (searchContext instanceof WebElement) {
+                elements = actionSearchContext.findElementsInElement(actionName, (WebElement) searchContext);
+            } else if (searchContext instanceof WebDriver) {
+                elements = actionSearchContext.findElements(actionName);
+            } else {
+                // Unknown case
+                throw new WebDriverException(
+                        "Unable to determine the SearchContext passed to findBy method! It is not an instance of WebDriver or WebElement. It is: "
+                                + searchContext);
+            }
+        } catch (Exception e) {
+            throw new WebDriverException("Unable to locate ng-click element for: " + actionName + ". Check whether it is correct", e);
+        }
+        return elements;
     }
 
     private GrapheneContext getGrapheneContext(SearchContext searchContext) {
