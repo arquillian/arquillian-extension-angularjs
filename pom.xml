@@ -163,8 +163,8 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.jboss.arquillian.graphene</groupId>
-                            <artifactId>graphene-angular-build-resources</artifactId>
+                            <groupId>org.jboss.arquillian.extension</groupId>
+                            <artifactId>arquillian-angular-build-resources</artifactId>
                             <version>${project.version}</version>
                         </dependency>
                     </dependencies>
@@ -202,8 +202,8 @@
                     </executions>
                     <dependencies>
                         <dependency>
-                            <groupId>org.jboss.arquillian.graphene</groupId>
-                            <artifactId>graphene-angular-build-resources</artifactId>
+                            <groupId>org.jboss.arquillian.extension</groupId>
+                            <artifactId>arquillian-angular-build-resources</artifactId>
                             <version>${project.version}</version>
                         </dependency>
                     </dependencies>
