@@ -23,9 +23,9 @@ Often you won't find any other meaningful selectors in AngularJS generated DOM t
 
 Angular annotations can offer you a stable way to describe
 
-* form inputs that binds to model values (`@FindByNg(model = "..."`)
+* form inputs that binds to model values (`@FindByNg(model = "...")`)
 * repeated DOM blocks (`@FindByNg(repeat = "...")`)
-* buttons, links or forms that are a source of actions (`@FindByNg(action = "..."`)
+* buttons, links or forms that are a source of actions (`@FindByNg(action = "...")`)
 
 ### Sample
 
