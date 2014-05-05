@@ -16,7 +16,7 @@ This ensures that application-specific computations are finished before the cont
 
 In order to use this extension, you don't need to do anything - it is registered and used automatically.
 
-Selectors - `FindByNg`
+Selectors - `@FindByNg`
 -----------------------
 
 Often you won't find any other meaningful selectors in AngularJS generated DOM than `ng-` attributes.
