@@ -3,14 +3,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.jboss.arquillian.graphene</groupId>
-        <artifactId>graphene-angular-parent</artifactId>
+        <groupId>org.jboss.arquillian.extension</groupId>
+        <artifactId>arquillian-angularjs-parent</artifactId>
         <version>1.0.0.Final-SNAPSHOT</version>
-        <relativePath>../pom.xml</relativePath>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <artifactId>graphene-angular-api</artifactId>
-    <name>Graphene Angular: API</name>
+    <artifactId>arquillian-angularjs-graphene-api</artifactId>
+    <name>Arquillian AngularJS Graphene: API</name>
 
     <dependencies>
         <dependency>
