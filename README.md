@@ -23,11 +23,11 @@ Selectors - `FindByNg`
 
 Often you won't find any other meaningful selectors in AngularJS generated DOM than `ng-` attributes.
 
-Angular attributes can offer you stable way how to describe
+Angular annotations can offer you a stable way to describe
 
 * form inputs that binds to model values (`@FindByNg(model = "..."`)
 * repeated DOM blocks (`@FindByNg(repeat = "...")`)
-* buttons or links that are source of actions (`@FindByNg(action = "..."`)
+* buttons, links or forms that are a source of actions (`@FindByNg(action = "..."`)
 
 ### Sample
 
@@ -58,6 +58,9 @@ Angular attributes can offer you stable way how to describe
         @FindByNg(action = "addTodo()")
         WebElement addTodo;
 
+        @FindByNg(repeat = "todo in todos")
+        List<WebElement> todoRepeat;
+
         @Before
         public void loadPage() {
             browser.navigate().to(contextRoot + "index.html");
@@ -70,14 +73,30 @@ Angular attributes can offer you stable way how to describe
 
         @Test
         public void testArchive() {
+            assertEquals(2, todos.size());
             archive.click();
             assertEquals(1, todos.size());
         }
 
         @Test
         public void testAddTodo() {
+            assertEquals(2, todos.size());
             todoEntry.sendKeys("This is a new TODO item");
             addTodo.submit();
             assertEquals(3, todos.size());
+        }
+
+        @Test
+        public void testRepeater() {
+            assertEquals(2, todoRepeat.size());
+            WebElement secondRow = todoRepeat.get(1);
+            WebElement checkbox = secondRow.findElement(By.tagName("input"));
+            WebElement todoItem = secondRow.findElement(By.tagName("span"));
+            assertEquals("second todo", todoItem.getText());
+
+            checkbox.click();
+            archive.click();
+
+            assertEquals(0, todoRepeat.size());
         }
     }
