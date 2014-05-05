@@ -1,7 +1,5 @@
-Arquillian AngularJS extensions to Arquillian Graphene
-======================================================
-
-> AngularJS extensions to Arquillian Graphene
+AngularJS extensions to Arquillian Graphene
+===========================================
 
 Features
 --------
