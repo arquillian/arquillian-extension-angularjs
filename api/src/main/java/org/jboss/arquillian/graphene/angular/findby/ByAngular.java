@@ -69,6 +69,11 @@ public abstract class ByAngular extends By {
         return new ByAction(action);
     }
 
+    public static By repeat(final String repeaterText) {
+        Validate.notNull(repeaterText, "Cannot find element when repeater text is null!");
+        return new ByRepeat(repeaterText);
+    }
+
     @ImplementedBy(className = "org.jboss.arquillian.graphene.angular.findby.ByModelImpl")
     public static class ByModel extends ByAngular implements Serializable {
         public ByModel(String modelName) {
@@ -80,6 +85,13 @@ public abstract class ByAngular extends By {
     public static class ByAction extends ByAngular implements Serializable {
         public ByAction(String action) {
             this.implementation = instantiate(ByAction.class, action);
+        }
+    }
+
+    @ImplementedBy(className = "org.jboss.arquillian.graphene.angular.findby.ByRepeatImpl")
+    public static class ByRepeat extends ByAngular implements Serializable {
+        public ByRepeat(String repeaterText) {
+            this.implementation = instantiate(ByRepeat.class, repeaterText);
         }
     }
 }

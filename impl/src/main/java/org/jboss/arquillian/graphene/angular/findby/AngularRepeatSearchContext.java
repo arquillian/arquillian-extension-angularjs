@@ -17,33 +17,13 @@
  */
 package org.jboss.arquillian.graphene.angular.findby;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import org.jboss.arquillian.graphene.spi.findby.ImplementsLocationStrategy;
+import org.jboss.arquillian.graphene.javascript.Dependency;
+import org.jboss.arquillian.graphene.javascript.JavaScript;
 
 /**
  * @author Ken Finnigan
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-@ImplementsLocationStrategy(AngularJSLocationStrategy.class)
-public @interface FindByNg {
-
-    /**
-     * ng-model
-     */
-    String model() default "";
-
-    /**
-     * ng-click and ng-submit
-     */
-    String action() default "";
-
-    /**
-     * ng-repeat
-     */
-    String repeat() default "";
+@JavaScript("Graphene.angularRepeatSearchContext")
+@Dependency(sources = "Graphene.angularRepeatSearchContext.js", interfaces = ArrayConverter.class)
+public interface AngularRepeatSearchContext extends AngularSearchContext {
 }

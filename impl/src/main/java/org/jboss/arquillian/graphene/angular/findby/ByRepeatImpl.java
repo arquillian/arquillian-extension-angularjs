@@ -17,33 +17,30 @@
  */
 package org.jboss.arquillian.graphene.angular.findby;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
-
-import org.jboss.arquillian.graphene.spi.findby.ImplementsLocationStrategy;
+import org.jboss.arquillian.core.spi.Validate;
+import org.jboss.arquillian.graphene.context.GrapheneContext;
+import org.jboss.arquillian.graphene.javascript.JSInterfaceFactory;
 
 /**
  * @author Ken Finnigan
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.FIELD)
-@ImplementsLocationStrategy(AngularJSLocationStrategy.class)
-public @interface FindByNg {
+public class ByRepeatImpl extends ByAngularImpl {
 
-    /**
-     * ng-model
-     */
-    String model() default "";
+    private final String repeaterText;
 
-    /**
-     * ng-click and ng-submit
-     */
-    String action() default "";
+    public ByRepeatImpl(String repeaterText) {
+        super(repeaterText, "ng-repeat");
+        Validate.notNull(repeaterText, "Cannot find element when repeater text is null!");
+        this.repeaterText = repeaterText;
+    }
 
-    /**
-     * ng-repeat
-     */
-    String repeat() default "";
+    @Override
+    public String toString() {
+        return "ByAngularRepeat(\"" + repeaterText + "\")";
+    }
+
+    @Override
+    protected AngularSearchContext getSearchContext(GrapheneContext grapheneContext) {
+        return JSInterfaceFactory.create(grapheneContext, AngularRepeatSearchContext.class);
+    }
 }

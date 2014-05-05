@@ -35,6 +35,8 @@ public class AngularJSLocationStrategy implements LocationStrategy {
             return ByAngular.model(findBy.model());
         } else if (!findBy.action().isEmpty()) {
             return ByAngular.action(findBy.action());
+        } else if (!findBy.repeat().isEmpty()) {
+            return ByAngular.repeat(findBy.repeat());
         }
 
         throw new IllegalStateException(String.format("Unable to determine the AngularJS operation from annotation %s", findBy));
