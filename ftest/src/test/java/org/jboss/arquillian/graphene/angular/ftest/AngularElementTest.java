@@ -31,6 +31,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -71,6 +72,9 @@ public class AngularElementTest {
     @FindByNg(action = "addTodo()")
     WebElement addTodo;
 
+    @FindByNg(repeat = "todo in todos")
+    List<WebElement> todoRepeat;
+
     @Before
     public void loadPage() {
         browser.navigate().to(contextRoot + "index.html");
@@ -83,14 +87,30 @@ public class AngularElementTest {
 
     @Test
     public void testArchive() {
+        assertEquals(2, todos.size());
         archive.click();
         assertEquals(1, todos.size());
     }
 
     @Test
     public void testAddTodo() {
+        assertEquals(2, todos.size());
         todoEntry.sendKeys("This is a new TODO item");
         addTodo.submit();
         assertEquals(3, todos.size());
+    }
+
+    @Test
+    public void testRepeater() {
+        assertEquals(2, todoRepeat.size());
+        WebElement secondRow = todoRepeat.get(1);
+        WebElement checkbox = secondRow.findElement(By.tagName("input"));
+        WebElement todoItem = secondRow.findElement(By.tagName("span"));
+        assertEquals("second todo", todoItem.getText());
+
+        checkbox.click();
+        archive.click();
+
+        assertEquals(0, todoRepeat.size());
     }
 }
