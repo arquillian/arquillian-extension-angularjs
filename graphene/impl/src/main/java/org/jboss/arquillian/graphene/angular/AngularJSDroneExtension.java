@@ -45,7 +45,7 @@ public class AngularJSDroneExtension implements LoadableExtension {
 
         @Override
         public boolean canEnhance(InstanceOrCallableInstance instance, Class<?> droneType, Class<? extends Annotation> qualifier) {
-            return WebDriver.class.isAssignableFrom(droneType);
+            return droneType.isAssignableFrom(EventFiringWebDriver.class);
         }
 
         @Override
