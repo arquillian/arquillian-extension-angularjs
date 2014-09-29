@@ -41,6 +41,7 @@
             <property name="user">tomcat</property>
             <property name="pass">tomcat</property>
             <property name="catalinaHome">${tomcat.home}</property>
+            <property name="catalinaBase">${tomcat.home}</property>
         </configuration>
     </container>
 </arquillian>
