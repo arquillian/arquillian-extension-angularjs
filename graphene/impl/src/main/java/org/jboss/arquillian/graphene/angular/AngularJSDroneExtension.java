@@ -106,8 +106,8 @@ public class AngularJSDroneExtension implements LoadableExtension {
                 executor.executeAsyncScript(
                         "var callback = arguments[arguments.length - 1];" +
                         "var e1 = document.querySelector('body');" +
-                        "if (window.angular) {" +
-                            "angular.element(e1).injector().get('$browser').notifyWhenNoOutstandingRequests(callback);" +
+                        "if (window.angular && window.angular.element && window.angular.element(e1).injector && window.angular.element(e1).injector() ) {" +
+                        "window.angular.element(e1).injector().get('$browser').notifyWhenNoOutstandingRequests(callback);" +
                         "} else {callback()}"
                 );
             }
