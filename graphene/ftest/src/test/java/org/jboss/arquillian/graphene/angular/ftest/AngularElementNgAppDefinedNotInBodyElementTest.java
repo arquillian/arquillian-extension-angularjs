@@ -24,17 +24,14 @@ import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 
-/**
- * @author Ken Finnigan
- */
 @RunWith(Arquillian.class)
 @RunAsClient
-public class AngularElementTest extends AngularTestTemplate {
+public class AngularElementNgAppDefinedNotInBodyElementTest extends AngularTestTemplate {
 
     @Deployment
     public static WebArchive createTestArchive() {
         return ShrinkWrap.create(WebArchive.class, "angular-test.war")
-                         .addAsWebResource("app/index.html", "index.html")
+                         .addAsWebResource("app/index-ng-app-in-main.html", "index.html")
                          .addAsWebResource("app/app.js", "app.js")
                          .addAsWebResource("app/todo.js", "todo.js")
                          .addAsWebResource("app/lib/angular.js", "lib/angular.js");

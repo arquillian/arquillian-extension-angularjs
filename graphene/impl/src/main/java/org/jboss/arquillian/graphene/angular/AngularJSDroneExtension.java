@@ -17,9 +17,6 @@
  */
 package org.jboss.arquillian.graphene.angular;
 
-import java.lang.annotation.Annotation;
-import java.util.concurrent.TimeUnit;
-
 import org.jboss.arquillian.core.spi.LoadableExtension;
 import org.jboss.arquillian.drone.spi.DroneInstanceEnhancer;
 import org.jboss.arquillian.drone.spi.InstanceOrCallableInstance;
@@ -29,6 +26,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+
+import java.lang.annotation.Annotation;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Ken Finnigan
@@ -104,11 +104,11 @@ public class AngularJSDroneExtension implements LoadableExtension {
             if (JavascriptExecutor.class.isInstance(driver)) {
                 JavascriptExecutor executor = (JavascriptExecutor) driver;
                 executor.executeAsyncScript(
-                        "var callback = arguments[arguments.length - 1];" +
-                        "var e1 = document.querySelector('body');" +
-                        "if (window.angular && window.angular.element && window.angular.element(e1).injector && window.angular.element(e1).injector() ) {" +
-                        "window.angular.element(e1).injector().get('$browser').notifyWhenNoOutstandingRequests(callback);" +
-                        "} else {callback()}"
+                        "var callback = arguments[arguments.length - 1]; " +
+                        "var e1 = document.querySelector('[ng-app]'); " +
+                        "if (window.angular && window.angular.element && window.angular.element(e1).injector && window.angular.element(e1).injector() ) { " +
+                        "window.angular.element(e1).injector().get('$browser').notifyWhenNoOutstandingRequests(callback); " +
+                        "} else {callback()} "
                 );
             }
         }
