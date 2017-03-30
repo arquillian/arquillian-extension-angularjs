@@ -3,12 +3,12 @@
  * Copyright 2014, Red Hat, Inc. and individual contributors
  * by the @authors tag. See the copyright.txt in the distribution for a
  * full listing of individual contributors.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  * http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -53,11 +53,12 @@ public abstract class ByAngularImpl extends By {
             } else {
                 // Unknown case
                 throw new WebDriverException(
-                        "Unable to determine the SearchContext passed to findBy method! It is not an instance of WebDriver or WebElement. It is: "
-                                + searchContext);
+                    "Unable to determine the SearchContext passed to findBy method! It is not an instance of WebDriver or WebElement. It is: "
+                        + searchContext);
             }
         } catch (Exception e) {
-            throw new WebDriverException("Unable to locate " + elementNames + " element(s) for: " + selector + ". Check whether it is correct", e);
+            throw new WebDriverException(
+                "Unable to locate " + elementNames + " element(s) for: " + selector + ". Check whether it is correct", e);
         }
         return elements;
     }
